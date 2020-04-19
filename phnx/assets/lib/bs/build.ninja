@@ -1,0 +1,31 @@
+g_pkg_flg = -bs-package-name myapp
+src_root_dir = /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets
+bsc = /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/bs-platform/linux/bsc.exe
+bsdep = /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/bs-platform/linux/bsb_helper.exe
+warnings = 
+bsc_flags = -bs-no-version-header -bs-super-errors
+ppx_flags = 
+g_dpkg_incls = 
+g_ns = 
+bsb_dir_group = 0
+g_lib_incls = -I js -I /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/reason-react/lib/ocaml
+rule build_ast_from_re
+  command = $bsc  $warnings -color always -bs-jsx 2 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
+  description = [34mBuilding[39m [2m${out}[22m
+build  js/Page.reast : build_ast_from_re $src_root_dir/js/Page.re
+rule build_deps
+  command = $bsdep -hash caec8cd5f90300344e8faabfe8d3bd44 $g_ns -g $bsb_dir_group $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  js/Page.d : build_deps js/Page.reast
+rule ml_cmj_cmi
+  command = $bsc $g_pkg_flg -color always -bs-suffix $g_lib_incls $warnings $bsc_flags -o $out $in
+  dyndep = $in_e.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  js/Page.cmj |  js/Page.cmi $src_root_dir/js/Page.bs.js : ml_cmj_cmi js/Page.reast ||  js/Page.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:js
+build  js/SimpleRoot.reast : build_ast_from_re $src_root_dir/js/SimpleRoot.re
+build  js/SimpleRoot.d : build_deps js/SimpleRoot.reast
+build  js/SimpleRoot.cmj |  js/SimpleRoot.cmi $src_root_dir/js/SimpleRoot.bs.js : ml_cmj_cmi js/SimpleRoot.reast ||  js/SimpleRoot.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:js

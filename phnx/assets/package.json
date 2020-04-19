@@ -3,15 +3,22 @@
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin"
+    "watch": "brunch watch --stdin",
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world"
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "phoenix_html": "file:../deps/phoenix_html",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reason-react": "^0.7.0"
   },
   "devDependencies": {
     "babel-brunch": "6.1.1",
     "brunch": "2.10.9",
+    "bs-platform": "^7.2.2",
     "clean-css-brunch": "2.10.0",
     "uglify-js-brunch": "2.10.0"
   }

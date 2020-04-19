@@ -1,0 +1,10 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx '/home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/bs-platform/linux/bsc.exe -as-ppx -bs-jsx 2'
+S /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/bs-platform/lib/ocaml
+B /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/bs-platform/lib/ocaml
+FLG -w +a-4-9-40-41-42-50-61-102
+S /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/reason-react/lib/ocaml
+B /home/oleg/codes/ores/phoenix-ML-graphql/phnx/assets/node_modules/reason-react/lib/ocaml
+S js
+B lib/bs/js
+####BSB GENERATED: NO EDIT}
